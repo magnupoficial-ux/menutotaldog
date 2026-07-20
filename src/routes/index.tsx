@@ -52,8 +52,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Dogão Big — Hotdogs & Lanches em Curitiba" },
       { name: "description", content: "Peça hot dogs especiais, X-Tudo e lanches do Dogão Big no Portão, Curitiba. Entrega rápida pelo WhatsApp." },
-      { property: "og:title", content: "Dogão Big — Hotdogs & Lanches" },
-      { property: "og:description", content: "Hot dogs especiais e lanches no Portão, Curitiba. Peça pelo WhatsApp." },
+      { property: "og:title", content: "Dogão Big — Hotdogs & Lanches em Curitiba" },
+      { property: "og:description", content: "Peça hot dogs especiais, X-Tudo e lanches do Dogão Big no Portão, Curitiba. Entrega rápida pelo WhatsApp." },
     ],
   }),
   component: Index,
