@@ -50,10 +50,10 @@ const IMG_X_BURGUER = xBurguerAsset.url;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dogão Big — Hotdogs & Lanches em Curitiba" },
-      { name: "description", content: "Peça hot dogs especiais, X-Tudo e lanches do Dogão Big no Portão, Curitiba. Entrega rápida pelo WhatsApp." },
-      { property: "og:title", content: "Dogão Big — Hotdogs & Lanches em Curitiba" },
-      { property: "og:description", content: "Peça hot dogs especiais, X-Tudo e lanches do Dogão Big no Portão, Curitiba. Entrega rápida pelo WhatsApp." },
+      { title: "Total Dog — Hotdogs & Lanches em Curitiba" },
+      { name: "description", content: "Peça hot dogs especiais, X-Tudo e lanches do Total Dog no Portão, Curitiba. Entrega rápida pelo WhatsApp." },
+      { property: "og:title", content: "Total Dog — Hotdogs & Lanches em Curitiba" },
+      { property: "og:description", content: "Peça hot dogs especiais, X-Tudo e lanches do Total Dog no Portão, Curitiba. Entrega rápida pelo WhatsApp." },
     ],
   }),
   component: Index,
@@ -61,9 +61,9 @@ export const Route = createFileRoute("/")({
 
 const CARDAPIO: Record<string, { id: string; nome: string; preco: number; desc: string; img: string }[]> = {
   "Especiais Duplos": [
-    { id: 'ed6', nome: 'Dogão Big (Serve 2 pessoas)', preco: 52.00, desc: '2 Pães, 2 vinas, bacon, filé de alcatra, calabresa, frango, cheddar, catupiry, maionese, tomate, cebola, mussarela, milho e batata palha.', img: IMG_DOG },
-    { id: 'ed5', nome: 'Meio Total Big', preco: 32.00, desc: 'Pão, 1 vina, bacon, filé de alcatra, calabresa, frango, cheddar, catupiry, maionese, tomate, cebola, mussarela, milho e batata palha.', img: IMG_MEIO_TOTAL_DOG },
-    { id: 'ed4', nome: 'Big', preco: 32.00, desc: 'Pão, 3 vinas, bacon, filé de alcatra, catupiry, cheddar, maionese, tomate, cebola, milho, batata palha, rúcula e tomate seco.', img: IMG_BIG_DOG },
+    { id: 'ed6', nome: 'Total Dog (Serve 2 pessoas)', preco: 52.00, desc: '2 Pães, 2 vinas, bacon, filé de alcatra, calabresa, frango, cheddar, catupiry, maionese, tomate, cebola, mussarela, milho e batata palha.', img: IMG_DOG },
+    { id: 'ed5', nome: 'Meio Total Dog', preco: 32.00, desc: 'Pão, 1 vina, bacon, filé de alcatra, calabresa, frango, cheddar, catupiry, maionese, tomate, cebola, mussarela, milho e batata palha.', img: IMG_MEIO_TOTAL_DOG },
+    { id: 'ed4', nome: 'Big', preco: 32.00, desc: 'Pão, 2 vinas, bacon, filé de alcatra, catupiry, cheddar, maionese, tomate, cebola, milho, batata palha, rúcula e tomate seco.', img: IMG_BIG_DOG },
     { id: 'ed2', nome: 'Cheddar', preco: 24.00, desc: 'Pão, 2 vinas, maionese, tomate, milho, batata palha, cheddar e cebola. (Opção: bacon, calabresa ou frango)', img: IMG_CHEDDAR },
     { id: 'ed1', nome: 'Catupiry', preco: 23.00, desc: 'Pão, 2 vinas, maionese, tomate, milho, batata palha, catupiry e cebola. (Opção: bacon, calabresa ou frango)', img: IMG_DOG_FRANGO },
     { id: 'ed3', nome: '4 Queijos', preco: 23.00, desc: 'Pão, 2 vinas, maionese, tomate, milho, batata palha, provolone, parmesão, mussarela, catupiry e cebola.', img: IMG_DOG_FRANGO },
@@ -129,7 +129,7 @@ function Index() {
     const id = setInterval(() => setAgora(new Date()), 60 * 1000);
     return () => clearInterval(id);
   }, []);
-  // Horário oficial Dogão Big (Google): Seg-Sáb 18:45 às 23:59 — Domingo fechado
+  // Horário oficial Total Dog (Google): Seg-Sáb 18:45 às 23:59 — Domingo fechado
   const dia = agora.getDay(); // 0 = Domingo
   const minutosAgora = agora.getHours() * 60 + agora.getMinutes();
   const lojaAberta = dia !== 0 && minutosAgora >= 18 * 60 + 45 && minutosAgora < 24 * 60;
@@ -223,7 +223,7 @@ function Index() {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setDepoimentos([
-          { autor: "Carlos Henrique", nota: 5, data: "Há 2 dias", texto: "O Dogão Big é disparado o melhor hot dog duplo de Curitiba! Recheio insano e entrega muito ágil.", foto: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&q=80" },
+          { autor: "Carlos Henrique", nota: 5, data: "Há 2 dias", texto: "O Total Dog é disparado o melhor hot dog duplo de Curitiba! Recheio insano e entrega muito ágil.", foto: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&q=80" },
           { autor: "Mariana Costa", nota: 5, data: "Há 1 semana", texto: "X-Tudo gigante e muito saboroso, carne no ponto perfeito. Sempre peço pelo app pelo frete fixo rápido.", foto: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" },
           { autor: "Roberto Souza", nota: 4, data: "Há 2 semanas", texto: "Hot Dog de Cheddar excelente. Bem embalado, chegou muito quente mesmo morando no Portão.", foto: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&q=80" },
         ]);
@@ -255,7 +255,7 @@ function Index() {
     const pagamentoLabel = formaPagamento === 'cartao' ? 'Cartão' : formaPagamento === 'dinheiro' ? 'Dinheiro' : 'Pix';
     const trocoStr = formaPagamento === 'dinheiro' && troco.trim() ? ` (Troco para R$ ${troco})` : '';
 
-    const mensagemFormated = `Olá Dogão Big! Meu nome é ${nome}. Gostaria de fazer o seguinte pedido: [${listaItens}]. Observações: [${observacoes || 'Nenhuma'}]. Subtotal: R$ ${subtotal.toFixed(2)}. Taxa de Entrega: R$ ${tipoEntrega === 'entrega' ? taxaFrete.toFixed(2) : '0.00'}. Total Final: R$ ${totalGeral.toFixed(2)}. Forma de Pagamento: ${pagamentoLabel}${trocoStr}. Endereço para entrega: [${stringEndereco}].`;
+    const mensagemFormated = `Olá Total Dog! Meu nome é ${nome}. Gostaria de fazer o seguinte pedido: [${listaItens}]. Observações: [${observacoes || 'Nenhuma'}]. Subtotal: R$ ${subtotal.toFixed(2)}. Taxa de Entrega: R$ ${tipoEntrega === 'entrega' ? taxaFrete.toFixed(2) : '0.00'}. Total Final: R$ ${totalGeral.toFixed(2)}. Forma de Pagamento: ${pagamentoLabel}${trocoStr}. Endereço para entrega: [${stringEndereco}].`;
     const urlApiWhatsapp = `https://api.whatsapp.com/send?phone=5541988442062&text=${encodeURIComponent(mensagemFormated)}`;
     window.open(urlApiWhatsapp, '_blank');
   };
@@ -269,7 +269,7 @@ function Index() {
       <header className="relative z-30 bg-black/95 backdrop-blur-md border-b border-[#f90302]/30 py-3 px-4 sticky top-0 shadow-lg">
         <div className="max-w-md mx-auto flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">
-            <img src={logoAsset.url} alt="Dogão Big" className="h-10 sm:h-12 w-auto object-contain shrink-0" />
+            <img src={logoAsset.url} alt="Total Dog" className="h-10 sm:h-12 w-auto object-contain shrink-0" />
             <p className="text-xs text-gray-400 flex items-center gap-1 truncate"><MapPin className="w-3 h-3 text-[#f90302] shrink-0" /> Portão, Curitiba</p>
           </div>
           <div className="flex flex-col items-end gap-0.5 shrink-0">
@@ -367,7 +367,7 @@ function Index() {
       </main>
 
       <footer className="relative z-10 bg-black/90 text-zinc-500 text-center py-6 text-xs border-t border-zinc-900 pb-28">
-        <p className="font-bold text-zinc-400 mb-1">Dogão Big Hotdog & Lanches</p>
+        <p className="font-bold text-zinc-400 mb-1">Total Dog Hotdog & Lanches</p>
         <p>R. Calixto Razolini, 335 - Portão, Curitiba - PR, 81070-060</p>
         <p className="text-[10px] mt-3 text-zinc-600">Desenvolvido com foco em alta performance e UX conversion.</p>
       </footer>
