@@ -202,6 +202,8 @@ function Index() {
           setTaxaBase(8.00);
         } else if (kmGeradoAleatorio <= 3.5) {
           setTaxaBase(9.00);
+        } else if (kmGeradoAleatorio <= 4.5) {
+          setTaxaBase(10.00);
         } else if (kmGeradoAleatorio <= 5.0) {
           setTaxaBase(10.00);
         } else if (kmGeradoAleatorio <= 5.8) {
