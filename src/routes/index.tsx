@@ -202,6 +202,8 @@ function Index() {
           setTaxaBase(8.00);
         } else if (kmGeradoAleatorio <= 3.5) {
           setTaxaBase(9.00);
+        } else if (kmGeradoAleatorio <= 4.5) {
+          setTaxaBase(10.00);
         } else if (kmGeradoAleatorio <= 5.0) {
           setTaxaBase(10.00);
         } else if (kmGeradoAleatorio <= 5.8) {
@@ -286,9 +288,22 @@ function Index() {
           <h2 className="font-bold text-sm text-[#febf14]">Peça o nosso "Cartão Fidelidade"</h2>
           <p className="text-xs text-gray-300">Acumule pontos em lanches e ganhe na sua próxima compra!</p>
         </div>
-        <div className="bg-gradient-to-r from-green-700 to-emerald-900 border-l-4 border-green-300 p-3 rounded-xl mb-8 shadow-md">
+        <div className="bg-gradient-to-r from-green-700 to-emerald-900 border-l-4 border-green-300 p-3 rounded-xl mb-4 shadow-md">
           <h2 className="font-bold text-sm text-white">🛵 Frete GRÁTIS acima de R$ 55,00</h2>
           <p className="text-xs text-green-100">Válido para entregas até 2,5 km pelo aplicativo.</p>
+        </div>
+
+        <div className="bg-black/60 border border-zinc-800 rounded-xl p-3 mb-8 shadow-md">
+          <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Taxa de Entrega</h3>
+          <ul className="text-xs text-zinc-300 space-y-1">
+            <li className="flex justify-between"><span>Até 2,5 km</span> <span className="font-bold text-white">R$ 7,00</span></li>
+            <li className="flex justify-between"><span>Até 3,0 km</span> <span className="font-bold text-white">R$ 8,00</span></li>
+            <li className="flex justify-between"><span>Até 3,5 km</span> <span className="font-bold text-white">R$ 9,00</span></li>
+            <li className="flex justify-between"><span>Até 4,5 km</span> <span className="font-bold text-white">R$ 10,00</span></li>
+            <li className="flex justify-between"><span>Até 5,0 km</span> <span className="font-bold text-white">R$ 10,00</span></li>
+            <li className="flex justify-between"><span>Até 5,8 km</span> <span className="font-bold text-white">R$ 12,00</span></li>
+            <li className="flex justify-between"><span>Até 7,0 km</span> <span className="font-bold text-white">R$ 15,00</span></li>
+          </ul>
         </div>
 
 
