@@ -168,6 +168,10 @@ function Index() {
     }).filter(item => item.qtd > 0));
   };
 
+  const removerDoCarrinho = (id: string) => {
+    setCarrinho(prev => prev.filter(item => item.id !== id));
+  };
+
   const subtotal = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
   const freteGratis = subtotal >= 55 && distanciaFicticia !== null && distanciaFicticia <= 2.5;
   const taxaFrete = freteGratis ? 0 : taxaBase;
