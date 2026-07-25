@@ -168,6 +168,10 @@ function Index() {
     }).filter(item => item.qtd > 0));
   };
 
+  const removerDoCarrinho = (id: string) => {
+    setCarrinho(prev => prev.filter(item => item.id !== id));
+  };
+
   const subtotal = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
   const freteGratis = subtotal >= 55 && distanciaFicticia !== null && distanciaFicticia <= 2.5;
   const taxaFrete = freteGratis ? 0 : taxaBase;
@@ -458,6 +462,12 @@ function Index() {
                     <div className="flex-grow pr-2">
                       <h5 className="font-bold text-sm text-gray-200">{item.nome}</h5>
                       <span className="text-xs font-semibold text-[#febf14]">R$ {(item.preco * item.qtd).toFixed(2)}</span>
+                      <button
+                        onClick={() => removerDoCarrinho(item.id)}
+                        className="block mt-1 text-[11px] text-red-500 font-semibold hover:text-red-400 underline decoration-red-500/50 underline-offset-2"
+                      >
+                        Remover
+                      </button>
                     </div>
                     <div className="flex items-center bg-black border border-zinc-800 rounded-lg">
                       <button onClick={() => atualizarQtdCarrinho(item.id, -1)} className="p-1 px-2 text-zinc-500"><Minus className="w-3 h-3" /></button>
