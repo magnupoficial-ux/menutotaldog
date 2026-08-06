@@ -119,6 +119,9 @@ function Index() {
   const [distanciaFicticia, setDistanciaFicticia] = useState<number | null>(null);
   const [taxaBase, setTaxaBase] = useState(0);
   const [erroCep, setErroCep] = useState('');
+  const [tempoEntrega, setTempoEntrega] = useState<number | null>(null);
+  const [calculandoFrete, setCalculandoFrete] = useState(false);
+  const [freteGratis, setFreteGratis] = useState(false);
 
 
   const [formaPagamento, setFormaPagamento] = useState<'cartao' | 'dinheiro' | 'pix' | ''>('');
@@ -173,7 +176,6 @@ function Index() {
   };
 
   const subtotal = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
-  const freteGratis = subtotal >= 55 && distanciaFicticia !== null && distanciaFicticia <= 2.5;
   const taxaFrete = freteGratis ? 0 : taxaBase;
   const totalGeral = tipoEntrega === 'entrega' ? subtotal + taxaFrete : subtotal;
   const totalItensNoCarrinho = carrinho.reduce((acc, item) => acc + item.qtd, 0);
