@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import {
   ShoppingBag, Plus, Minus, X, MapPin, Star, Check, Phone,
 } from "lucide-react";
+import { calcularFrete } from "@/lib/frete.functions";
 import fotoXsTotalAsset from "@/assets/FotoXsTotal.jpg.asset.json";
 import totaldogAsset from "@/assets/hotdog-totaldog.jpg.asset.json";
 import logoAsset from "@/assets/logo-totaldog.jpg.asset.json";
