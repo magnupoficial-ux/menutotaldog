@@ -530,9 +530,13 @@ function Index() {
                         className="w-full col-span-2 bg-zinc-900 border border-zinc-800 focus:border-[#febf14] p-3 rounded-xl text-sm placeholder-zinc-500 text-white outline-none transition"
                       />
                     </div>
-                    {distanciaFicticia && !erroCep && (
+                    {calculandoFrete && (
+                      <p className="text-[11px] text-zinc-400 px-1 font-semibold">Calculando distância e frete...</p>
+                    )}
+                    {!calculandoFrete && distanciaFicticia !== null && !erroCep && (
                       <p className="text-[11px] text-green-400 px-1 font-semibold flex items-center gap-1">
-                        <Check className="w-3 h-3" /> Estabelecimento localizado a {distanciaFicticia}km de você.
+                        <Check className="w-3 h-3" /> {distanciaFicticia} km de distância
+                        {tempoEntrega ? ` • entrega estimada em ~${tempoEntrega} min` : ''}.
                       </p>
                     )}
                   </>
