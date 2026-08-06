@@ -268,9 +268,12 @@ function Index() {
   const finalizarPedidoEEnviarWhatsApp = () => {
     if (!lojaAberta) return alert('Estamos fechados no momento. Atendimento: Seg-Sáb 18h45 às 23h59.');
     if (!nome.trim()) return alert('Por favor, informe seu nome.');
-    if (tipoEntrega === 'entrega' && (!rua || !numero || (distanciaFicticia ?? 0) > 7)) {
-      return alert('Por favor, valide um CEP de entrega dentro do raio de cobertura (7km).');
-
+    if (tipoEntrega === 'entrega') {
+      if (calculandoFrete) return alert('Aguarde o cálculo do frete finalizar.');
+      if (!rua || !numero.trim() || distanciaFicticia === null || erroCep) {
+        return alert('Informe um CEP e número válidos dentro da nossa área de entrega (até 7 km).');
+      }
+      if (distanciaFicticia > 7) return alert('Endereço fora da nossa área de entrega');
     }
     if (!formaPagamento) return alert('Por favor, selecione a forma de pagamento.');
 
@@ -590,7 +593,7 @@ function Index() {
                   <div className="flex justify-between text-zinc-400">
                     <span>Taxa de Entrega {freteGratis && <span className="text-green-400 font-bold">(GRÁTIS)</span>}</span>
                     <span className={taxaBase === 0 && !freteGratis ? "text-red-500" : "text-white font-bold"}>
-                      {taxaBase === 0 && !freteGratis ? "Calcule o CEP" : freteGratis ? <span className="text-green-400">Grátis</span> : `R$ ${taxaFrete.toFixed(2)}`}
+                      {calculandoFrete ? "Calculando..." : taxaBase === 0 && !freteGratis ? "Informe CEP e número" : freteGratis ? <span className="text-green-400">Grátis</span> : `R$ ${taxaFrete.toFixed(2)}`}
                     </span>
                   </div>
                 )}
