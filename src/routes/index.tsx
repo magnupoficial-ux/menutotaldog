@@ -192,77 +192,59 @@ function Index() {
         const data = await response.json();
 
         if (data.erro) {
-          setErroCep('CEP não encontrado.');
+          setErroCep('Não encontramos esse CEP. Confira o CEP digitado.');
           return;
         }
         setRua(data.logradouro);
         setBairro(data.bairro);
         setCidade(data.localidade);
-
-        // Geocodifica o endereço via Nominatim (OpenStreetMap) e calcula a
-        // distância real (haversine) até a loja: R. Calixto Razolini, 335 - Portão.
-        const ORIGEM = { lat: -25.4692, lon: -49.2989 };
-        const query = encodeURIComponent(
-          `${data.logradouro || ''}, ${data.bairro || ''}, ${data.localidade || 'Curitiba'}, ${data.uf || 'PR'}, Brasil`
-        );
-        let km = 0;
-        try {
-          const geo = await fetch(
-            `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${query}`,
-            { headers: { 'Accept-Language': 'pt-BR' } }
-          );
-          const geoData = await geo.json();
-          if (geoData && geoData[0]) {
-            const lat2 = parseFloat(geoData[0].lat);
-            const lon2 = parseFloat(geoData[0].lon);
-            const toRad = (v: number) => (v * Math.PI) / 180;
-            const R = 6371;
-            const dLat = toRad(lat2 - ORIGEM.lat);
-            const dLon = toRad(lon2 - ORIGEM.lon);
-            const a =
-              Math.sin(dLat / 2) ** 2 +
-              Math.cos(toRad(ORIGEM.lat)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
-            const distReta = 2 * R * Math.asin(Math.sqrt(a));
-            // Ajuste ~1.3x para aproximar distância por vias
-            km = Math.round(distReta * 1.3 * 10) / 10;
-          }
-        } catch {
-          // fallback silencioso; km permanece 0 e cairá no erro abaixo
-        }
-
-        if (km <= 0) {
-          setErroCep('Não foi possível calcular a distância. Confira o endereço.');
-          setTaxaBase(0);
-          setDistanciaFicticia(null);
-          return;
-        }
-
-        setDistanciaFicticia(km);
-
-        if (km <= 2.5) {
-          setTaxaBase(7.00);
-        } else if (km <= 3.0) {
-          setTaxaBase(8.00);
-        } else if (km <= 3.5) {
-          setTaxaBase(9.00);
-        } else if (km <= 4.5) {
-          setTaxaBase(10.00);
-        } else if (km <= 5.0) {
-          setTaxaBase(10.00);
-        } else if (km <= 5.8) {
-          setTaxaBase(12.00);
-        } else if (km <= 7.0) {
-          setTaxaBase(15.00);
-        } else {
-          setErroCep('Desculpe! Endereço fora do nosso raio de entrega (máx. 7km).');
-          setTaxaBase(0);
-        }
-
       } catch {
-        setErroCep('Erro ao consultar endereço.');
+        setErroCep('Erro ao consultar o CEP. Tente novamente.');
       }
     }
   };
+
+  // Calcula o frete no backend (Google Routes) sempre que o endereço completo
+  // ou o subtotal mudarem. A chave da API fica protegida no servidor.
+  useEffect(() => {
+    if (tipoEntrega !== 'entrega' || cep.length !== 8 || !rua || !numero.trim()) {
+      setDistanciaFicticia(null);
+      setTempoEntrega(null);
+      setTaxaBase(0);
+      setFreteGratis(false);
+      return;
+    }
+    let cancelado = false;
+    const endereco = `${rua}, ${numero}, ${bairro}, ${cidade} - PR, CEP ${cep}, Brasil`;
+    const timer = setTimeout(async () => {
+      setCalculandoFrete(true);
+      try {
+        const r = await calcularFrete({ data: { endereco, subtotal } });
+        if (cancelado) return;
+        if (!r.ok) {
+          setErroCep(r.erro ?? 'Não foi possível calcular a entrega.');
+          setDistanciaFicticia(r.km ?? null);
+          setTempoEntrega(null);
+          setTaxaBase(0);
+          setFreteGratis(false);
+        } else {
+          setErroCep('');
+          setDistanciaFicticia(r.km ?? null);
+          setTempoEntrega(r.minutos ?? null);
+          setTaxaBase(r.taxa ?? 0);
+          setFreteGratis(Boolean(r.gratis));
+        }
+      } catch {
+        if (!cancelado) setErroCep('Não foi possível calcular a entrega agora. Tente novamente.');
+      } finally {
+        if (!cancelado) setCalculandoFrete(false);
+      }
+    }, 600);
+    return () => {
+      cancelado = true;
+      clearTimeout(timer);
+    };
+  }, [tipoEntrega, cep, rua, bairro, cidade, numero, subtotal]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
