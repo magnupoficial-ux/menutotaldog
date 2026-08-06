@@ -316,7 +316,7 @@ function Index() {
         </div>
         <div className="bg-gradient-to-r from-green-700 to-emerald-900 border-l-4 border-green-300 p-3 rounded-xl mb-4 shadow-md">
           <h2 className="font-bold text-sm text-white">🛵 Frete GRÁTIS acima de R$ 55,00</h2>
-          <p className="text-xs text-green-100">Válido para entregas até 2,5 km pelo aplicativo.</p>
+          <p className="text-xs text-green-100">Válido para entregas até 3,0 km pelo aplicativo.</p>
         </div>
 
         <div className="bg-black/60 border border-zinc-800 rounded-xl p-3 mb-8 shadow-md">
@@ -326,7 +326,7 @@ function Index() {
             <li className="flex justify-between"><span>Até 3,0 km</span> <span className="font-bold text-white">R$ 8,00</span></li>
             <li className="flex justify-between"><span>Até 3,5 km</span> <span className="font-bold text-white">R$ 9,00</span></li>
             <li className="flex justify-between"><span>Até 4,5 km</span> <span className="font-bold text-white">R$ 10,00</span></li>
-            <li className="flex justify-between"><span>Até 5,0 km</span> <span className="font-bold text-white">R$ 10,00</span></li>
+            <li className="flex justify-between"><span>Até 5,0 km</span> <span className="font-bold text-white">R$ 11,00</span></li>
             <li className="flex justify-between"><span>Até 5,8 km</span> <span className="font-bold text-white">R$ 12,00</span></li>
             <li className="flex justify-between"><span>Até 7,0 km</span> <span className="font-bold text-white">R$ 15,00</span></li>
           </ul>
