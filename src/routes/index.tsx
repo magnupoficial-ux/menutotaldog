@@ -101,6 +101,7 @@ const CARDAPIO: Record<string, { id: string; nome: string; preco: number; desc: 
 
 type CartItem = { id: string; nome: string; preco: number; desc: string; img: string; qtd: number };
 type Depoimento = { autor: string; nota: number; data: string; texto: string; foto: string };
+type Oferta = { id: string; titulo: string; badge: string; preco: number; descricao: string; itens: string[]; img: string };
 
 function Index() {
   const [quantidadesVitrine, setQuantidadesVitrine] = useState<Record<string, number>>({});
