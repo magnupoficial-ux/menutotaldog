@@ -384,33 +384,33 @@ function Index() {
             {OFERTAS.map((oferta) => {
               const qtdVitrine = quantidadesVitrine[oferta.id] || 1;
               return (
-                <div key={oferta.id} className="bg-black/60 border border-gray-800 backdrop-blur-sm rounded-2xl overflow-hidden flex shadow-lg hover:border-gray-700 transition">
-                  <div className="w-28 h-28 relative flex-shrink-0 bg-gray-900">
+                <div key={oferta.id} className="bg-black/60 border border-gray-800 backdrop-blur-sm rounded-2xl overflow-hidden flex shadow-lg hover:border-gray-700 transition min-w-0">
+                  <div className="w-20 h-20 sm:w-28 sm:h-28 relative flex-shrink-0 bg-gray-900">
                     <img src={oferta.img} alt={oferta.titulo} className="w-full h-full object-cover" loading="lazy" />
-                    <span className="absolute top-1.5 left-1.5 bg-[#f90302] text-white text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wide shadow">
+                    <span className="absolute top-1 left-1 bg-[#f90302] text-white text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wide shadow">
                       Oferta
                     </span>
                   </div>
-                  <div className="p-3 flex flex-col justify-between flex-grow">
-                    <div>
-                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#febf14] mb-1">
-                        <Star className="w-3 h-3 fill-[#febf14]" /> {oferta.badge}
+                  <div className="p-2.5 sm:p-3 flex flex-col justify-between flex-grow min-w-0">
+                    <div className="min-w-0">
+                      <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-[#febf14] mb-1">
+                        <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-[#febf14]" /> {oferta.badge}
                       </span>
-                      <h4 className="font-bold text-base text-white tracking-wide leading-tight">{oferta.titulo}</h4>
-                      <p className="text-xs text-gray-400 line-clamp-2 mt-0.5 font-light">{oferta.descricao}</p>
-                      <p className="text-[10px] text-gray-500 mt-1 truncate">{oferta.itens.join(' • ')}</p>
+                      <h4 className="font-bold text-sm sm:text-base text-white tracking-wide leading-tight truncate">{oferta.titulo}</h4>
+                      <p className="text-[11px] sm:text-xs text-gray-400 line-clamp-2 mt-0.5 font-light">{oferta.descricao}</p>
+                      <p className="text-[9px] sm:text-[10px] text-gray-500 mt-1 truncate">{oferta.itens.join(' • ')}</p>
                     </div>
-                    <div className="flex items-center justify-between mt-2 pt-1">
-                      <span className="text-[#febf14] font-black text-base">R$ {oferta.preco.toFixed(2)}</span>
-                      <div className="flex items-center gap-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mt-2 pt-1 gap-2">
+                      <span className="text-[#febf14] font-black text-sm sm:text-base">R$ {oferta.preco.toFixed(2)}</span>
+                      <div className="flex items-center gap-2 justify-end">
                         <div className="flex items-center bg-zinc-900 border border-zinc-700 rounded-lg">
-                          <button onClick={() => alterarQtdVitrine(oferta.id, 'menos')} className="p-1 px-2 text-gray-400 hover:text-white"><Minus className="w-3 h-3" /></button>
+                          <button onClick={() => alterarQtdVitrine(oferta.id, 'menos')} className="p-1 sm:p-1.5 px-2 sm:px-2.5 text-gray-400 hover:text-white"><Minus className="w-3 h-3" /></button>
                           <span className="text-xs font-bold w-4 text-center">{qtdVitrine}</span>
-                          <button onClick={() => alterarQtdVitrine(oferta.id, 'mais')} className="p-1 px-2 text-gray-400 hover:text-white"><Plus className="w-3 h-3" /></button>
+                          <button onClick={() => alterarQtdVitrine(oferta.id, 'mais')} className="p-1 sm:p-1.5 px-2 sm:px-2.5 text-gray-400 hover:text-white"><Plus className="w-3 h-3" /></button>
                         </div>
                         <button
                           onClick={() => adicionarAoCarrinho({ id: oferta.id, nome: oferta.titulo, preco: oferta.preco, desc: oferta.descricao, img: oferta.img })}
-                          className="bg-[#f90302] hover:bg-red-700 text-white p-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center gap-1 shadow-sm"
+                          className="bg-[#f90302] hover:bg-red-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 shadow-sm whitespace-nowrap shrink-0"
                         >
                           <Plus className="w-3 h-3" /> Add
                         </button>
