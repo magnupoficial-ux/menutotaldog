@@ -47,6 +47,44 @@ const IMG_X_CALABREZA = xCalabrezaAsset.url;
 const IMG_X_SALADA = xSaladaAsset.url;
 const IMG_X_BURGUER = xBurguerAsset.url;
 
+const OFERTAS: Oferta[] = [
+  {
+    id: 'combo-galera',
+    titulo: 'Combo Galera - 2 Total Dog Completão + Guaraná 2L',
+    badge: 'Serve até 4 pessoas | Entrega Grátis até 2,5km',
+    preco: 89.90,
+    descricao: 'O queridinho da casa para compartilhar! Leve 2 lanches Total Dog Completão — recheados no capricho com sabor, qualidade e muito recheio — acompanhados de 1 Guaraná Antarctica de 2 Litros bem gelado.',
+    itens: [
+      '2x Total Dog Completão (Serve até 4 pessoas)',
+      '1x Guaraná Antarctica 2 Litros',
+    ],
+    img: IMG_DOG,
+  },
+  {
+    id: 'combo-bacon',
+    titulo: 'Combo Especial - 3 Dog Bacon + Coca-Cola 1L',
+    badge: 'Imperdível | Entrega Grátis até 2,5km',
+    preco: 56.90,
+    descricao: 'Sabor que vicia! Aproveite esta oferta especial com 3 deliciosos Hot Dogs de Bacon bem recheados + 1 Coca-Cola Original de 1 Litro bem gelada para acompanhar. Qualidade que você já conhece com o melhor preço!',
+    itens: [
+      '3x Hot Dogs Especiais de Bacon',
+      '1x Coca-Cola Original 1 Litro',
+    ],
+    img: IMG_BACON,
+  },
+  {
+    id: 'combo-frango',
+    titulo: 'Combo Especial - 3 Frango com Catupiry + Coca-Cola 1L',
+    badge: 'Mais Pedido | Entrega Grátis até 2,5km',
+    preco: 56.90,
+    descricao: 'A combinação perfeita! 3 Hot Dogs Especiais de Frango desfiado com Catupiry cremoso + 1 Coca-Cola Original de 1 Litro geladinha. Feito com ingredientes selecionados e muito carinho para você!',
+    itens: [
+      '3x Hot Dogs Especiais de Frango com Catupiry',
+      '1x Coca-Cola Original 1 Litro',
+    ],
+    img: IMG_DOG_FRANGO,
+  },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -101,6 +139,7 @@ const CARDAPIO: Record<string, { id: string; nome: string; preco: number; desc: 
 
 type CartItem = { id: string; nome: string; preco: number; desc: string; img: string; qtd: number };
 type Depoimento = { autor: string; nota: number; data: string; texto: string; foto: string };
+type Oferta = { id: string; titulo: string; badge: string; preco: number; descricao: string; itens: string[]; img: string };
 
 function Index() {
   const [quantidadesVitrine, setQuantidadesVitrine] = useState<Record<string, number>>({});
@@ -335,6 +374,49 @@ function Index() {
           </ul>
         </div>
 
+
+        <section className="mb-8">
+          <h3 className="text-xl font-black text-white border-b-2 border-[#f90302] pb-2 mb-4 tracking-wide uppercase flex items-center gap-2">
+            <span className="w-2 h-4 bg-[#f90302] rounded-sm"></span>
+            🔥 Ofertas Especiais
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {OFERTAS.map((oferta) => (
+              <div key={oferta.id} className="bg-black/60 border border-gray-800 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:border-gray-700 transition flex flex-col">
+                <div className="relative w-full h-40 bg-gray-900">
+                  <img src={oferta.img} alt={oferta.titulo} className="w-full h-full object-cover" loading="lazy" />
+                  <span className="absolute top-2 left-2 bg-[#f90302] text-white text-[10px] font-black px-2 py-1 rounded-full uppercase tracking-wide shadow">
+                    Oferta
+                  </span>
+                </div>
+                <div className="p-4 flex flex-col flex-grow">
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#febf14] mb-2">
+                    <Star className="w-3 h-3 fill-[#febf14]" /> {oferta.badge}
+                  </span>
+                  <h4 className="font-black text-base text-white leading-tight mb-1.5">{oferta.titulo}</h4>
+                  <p className="text-xs text-gray-400 font-light mb-3">{oferta.descricao}</p>
+                  <ul className="space-y-1 mb-4">
+                    {oferta.itens.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-xs text-zinc-300">
+                        <Check className="w-3.5 h-3.5 text-[#1a8a3a] shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-auto flex items-center justify-between gap-3">
+                    <span className="text-[#febf14] font-black text-lg">R$ {oferta.preco.toFixed(2)}</span>
+                    <button
+                      onClick={() => adicionarAoCarrinho({ id: oferta.id, nome: oferta.titulo, preco: oferta.preco, desc: oferta.descricao, img: oferta.img })}
+                      className="bg-[#f90302] hover:bg-red-700 text-white p-2 px-3 rounded-lg text-xs font-bold transition flex items-center gap-1 shadow-sm shrink-0"
+                    >
+                      <Plus className="w-3.5 h-3.5" /> Adicionar ao Carrinho
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {Object.entries(CARDAPIO).map(([categoria, itens]) => (
           <section key={categoria} className="mb-8">
