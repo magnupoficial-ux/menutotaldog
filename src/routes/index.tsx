@@ -380,41 +380,46 @@ function Index() {
             <span className="w-2 h-4 bg-[#f90302] rounded-sm"></span>
             🔥 Ofertas Especiais
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {OFERTAS.map((oferta) => (
-              <div key={oferta.id} className="bg-black/60 border border-gray-800 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:border-gray-700 transition flex flex-col">
-                <div className="relative w-full h-40 bg-gray-900">
-                  <img src={oferta.img} alt={oferta.titulo} className="w-full h-full object-cover" loading="lazy" />
-                  <span className="absolute top-2 left-2 bg-[#f90302] text-white text-[10px] font-black px-2 py-1 rounded-full uppercase tracking-wide shadow">
-                    Oferta
-                  </span>
-                </div>
-                <div className="p-4 flex flex-col flex-grow">
-                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#febf14] mb-2">
-                    <Star className="w-3 h-3 fill-[#febf14]" /> {oferta.badge}
-                  </span>
-                  <h4 className="font-black text-base text-white leading-tight mb-1.5">{oferta.titulo}</h4>
-                  <p className="text-xs text-gray-400 font-light mb-3">{oferta.descricao}</p>
-                  <ul className="space-y-1 mb-4">
-                    {oferta.itens.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs text-zinc-300">
-                        <Check className="w-3.5 h-3.5 text-[#1a8a3a] shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-auto flex items-center justify-between gap-3">
-                    <span className="text-[#febf14] font-black text-lg">R$ {oferta.preco.toFixed(2)}</span>
-                    <button
-                      onClick={() => adicionarAoCarrinho({ id: oferta.id, nome: oferta.titulo, preco: oferta.preco, desc: oferta.descricao, img: oferta.img })}
-                      className="bg-[#f90302] hover:bg-red-700 text-white p-2 px-3 rounded-lg text-xs font-bold transition flex items-center gap-1 shadow-sm shrink-0"
-                    >
-                      <Plus className="w-3.5 h-3.5" /> Adicionar ao Carrinho
-                    </button>
+          <div className="grid gap-4">
+            {OFERTAS.map((oferta) => {
+              const qtdVitrine = quantidadesVitrine[oferta.id] || 1;
+              return (
+                <div key={oferta.id} className="bg-black/60 border border-gray-800 backdrop-blur-sm rounded-2xl overflow-hidden flex shadow-lg hover:border-gray-700 transition">
+                  <div className="w-28 h-28 relative flex-shrink-0 bg-gray-900">
+                    <img src={oferta.img} alt={oferta.titulo} className="w-full h-full object-cover" loading="lazy" />
+                    <span className="absolute top-1.5 left-1.5 bg-[#f90302] text-white text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wide shadow">
+                      Oferta
+                    </span>
+                  </div>
+                  <div className="p-3 flex flex-col justify-between flex-grow">
+                    <div>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#febf14] mb-1">
+                        <Star className="w-3 h-3 fill-[#febf14]" /> {oferta.badge}
+                      </span>
+                      <h4 className="font-bold text-base text-white tracking-wide leading-tight">{oferta.titulo}</h4>
+                      <p className="text-xs text-gray-400 line-clamp-2 mt-0.5 font-light">{oferta.descricao}</p>
+                      <p className="text-[10px] text-gray-500 mt-1 truncate">{oferta.itens.join(' • ')}</p>
+                    </div>
+                    <div className="flex items-center justify-between mt-2 pt-1">
+                      <span className="text-[#febf14] font-black text-base">R$ {oferta.preco.toFixed(2)}</span>
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center bg-zinc-900 border border-zinc-700 rounded-lg">
+                          <button onClick={() => alterarQtdVitrine(oferta.id, 'menos')} className="p-1 px-2 text-gray-400 hover:text-white"><Minus className="w-3 h-3" /></button>
+                          <span className="text-xs font-bold w-4 text-center">{qtdVitrine}</span>
+                          <button onClick={() => alterarQtdVitrine(oferta.id, 'mais')} className="p-1 px-2 text-gray-400 hover:text-white"><Plus className="w-3 h-3" /></button>
+                        </div>
+                        <button
+                          onClick={() => adicionarAoCarrinho({ id: oferta.id, nome: oferta.titulo, preco: oferta.preco, desc: oferta.descricao, img: oferta.img })}
+                          className="bg-[#f90302] hover:bg-red-700 text-white p-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center gap-1 shadow-sm"
+                        >
+                          <Plus className="w-3 h-3" /> Add
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
