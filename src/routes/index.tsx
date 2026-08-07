@@ -47,8 +47,44 @@ const IMG_X_CALABREZA = xCalabrezaAsset.url;
 const IMG_X_SALADA = xSaladaAsset.url;
 const IMG_X_BURGUER = xBurguerAsset.url;
 
-
-export const Route = createFileRoute("/")({
+const OFERTAS: Oferta[] = [
+  {
+    id: 'combo-galera',
+    titulo: 'Combo Galera - 2 Total Dog Completão + Guaraná 2L',
+    badge: 'Serve até 4 pessoas | Entrega Grátis até 2,5km',
+    preco: 89.90,
+    descricao: 'O queridinho da casa para compartilhar! Leve 2 lanches Total Dog Completão — recheados no capricho com sabor, qualidade e muito recheio — acompanhados de 1 Guaraná Antarctica de 2 Litros bem gelado.',
+    itens: [
+      '2x Total Dog Completão (Serve até 4 pessoas)',
+      '1x Guaraná Antarctica 2 Litros',
+    ],
+    img: IMG_DOG,
+  },
+  {
+    id: 'combo-bacon',
+    titulo: 'Combo Especial - 3 Dog Bacon + Coca-Cola 1L',
+    badge: 'Imperdível | Entrega Grátis até 2,5km',
+    preco: 56.90,
+    descricao: 'Sabor que vicia! Aproveite esta oferta especial com 3 deliciosos Hot Dogs de Bacon bem recheados + 1 Coca-Cola Original de 1 Litro bem gelada para acompanhar. Qualidade que você já conhece com o melhor preço!',
+    itens: [
+      '3x Hot Dogs Especiais de Bacon',
+      '1x Coca-Cola Original 1 Litro',
+    ],
+    img: IMG_BACON,
+  },
+  {
+    id: 'combo-frango',
+    titulo: 'Combo Especial - 3 Frango com Catupiry + Coca-Cola 1L',
+    badge: 'Mais Pedido | Entrega Grátis até 2,5km',
+    preco: 56.90,
+    descricao: 'A combinação perfeita! 3 Hot Dogs Especiais de Frango desfiado com Catupiry cremoso + 1 Coca-Cola Original de 1 Litro geladinha. Feito com ingredientes selecionados e muito carinho para você!',
+    itens: [
+      '3x Hot Dogs Especiais de Frango com Catupiry',
+      '1x Coca-Cola Original 1 Litro',
+    ],
+    img: IMG_DOG_FRANGO,
+  },
+];
   head: () => ({
     meta: [
       { title: "Total Dog — Hotdogs & Lanches em Curitiba" },
