@@ -85,6 +85,8 @@ const OFERTAS: Oferta[] = [
     img: IMG_DOG_FRANGO,
   },
 ];
+
+export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Total Dog — Hotdogs & Lanches em Curitiba" },
