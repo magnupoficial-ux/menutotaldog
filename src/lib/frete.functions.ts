@@ -103,6 +103,6 @@ export const calcularFrete = createServerFn({ method: "POST" })
       return { ok: false, km, erro: "Endereço fora da nossa área de entrega" };
     }
 
-    const gratis = data.subtotal >= 55 && km <= 3.0;
+    const gratis = data.subtotal >= 55 && km <= 2.5;
     return { ok: true, km, minutos, taxa: gratis ? 0 : taxaBase, gratis };
   });

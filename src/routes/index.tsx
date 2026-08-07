@@ -319,7 +319,7 @@ function Index() {
         </div>
         <div className="bg-gradient-to-r from-green-700 to-emerald-900 border-l-4 border-green-300 p-3 rounded-xl mb-4 shadow-md">
           <h2 className="font-bold text-sm text-white">🛵 Frete GRÁTIS acima de R$ 55,00</h2>
-          <p className="text-xs text-green-100">Válido para entregas até 3,0 km pelo aplicativo.</p>
+          <p className="text-xs text-green-100">Válido para entregas até 2,5 km pelo aplicativo.</p>
         </div>
 
         <div className="bg-black/60 border border-zinc-800 rounded-xl p-3 mb-8 shadow-md">
