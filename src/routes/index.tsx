@@ -52,7 +52,7 @@ const OFERTAS: Oferta[] = [
     id: 'combo-galera',
     titulo: 'Combo Galera - 2 Total Dog Completão + Guaraná 2L',
     badge: 'Serve até 4 pessoas | Entrega Grátis até 2,5km',
-    preco: 89.90,
+    preco: 95.90,
     descricao: 'O queridinho da casa para compartilhar! Leve 2 lanches Total Dog Completão — recheados no capricho com sabor, qualidade e muito recheio — acompanhados de 1 Guaraná Antarctica de 2 Litros bem gelado.',
     itens: [
       '2x Total Dog Completão (Serve até 4 pessoas)',
