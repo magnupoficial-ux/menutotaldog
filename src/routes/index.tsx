@@ -64,7 +64,7 @@ const OFERTAS: Oferta[] = [
     id: 'combo-bacon',
     titulo: 'Combo Especial - 3 Dog Bacon + Coca-Cola 1L',
     badge: 'Imperdível | Entrega Grátis até 2,5km',
-    preco: 56.90,
+    preco: 58.90,
     descricao: 'Sabor que vicia! Aproveite esta oferta especial com 3 deliciosos Hot Dogs de Bacon bem recheados + 1 Coca-Cola Original de 1 Litro bem gelada para acompanhar. Qualidade que você já conhece com o melhor preço!',
     itens: [
       '3x Hot Dogs Especiais de Bacon',
@@ -76,7 +76,7 @@ const OFERTAS: Oferta[] = [
     id: 'combo-frango',
     titulo: 'Combo Especial - 3 Frango com Catupiry + Coca-Cola 1L',
     badge: 'Mais Pedido | Entrega Grátis até 2,5km',
-    preco: 56.90,
+    preco: 58.90,
     descricao: 'A combinação perfeita! 3 Hot Dogs Especiais de Frango desfiado com Catupiry cremoso + 1 Coca-Cola Original de 1 Litro geladinha. Feito com ingredientes selecionados e muito carinho para você!',
     itens: [
       '3x Hot Dogs Especiais de Frango com Catupiry',
